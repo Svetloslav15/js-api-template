@@ -1,0 +1,24 @@
+{
+  "name": "api-template-system",
+  "version": "0.0.1",
+  "description": "API Template",
+  "main": "index.js",
+  "engines": {
+    "node": "7.10.0",
+    "npm": "4.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Svetloslav Novoselski",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "express": "4.15.3",
+    "express-session": "^1.15.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^4.10.4"
+  }
+}
