@@ -1,5 +1,6 @@
 const controllers = require('../controllers');
 const usersRoutes = require('../routes/users');
+const StatusCodes = require('../enums/status-codes');
 
 module.exports = (app) => {
   app.get('/', controllers.home.index);
@@ -7,7 +8,7 @@ module.exports = (app) => {
   app.use('/users', usersRoutes);
 
   app.all('*', (req, res) => {
-    res.status(404);
+    res.status(StatusCodes.Unauthorized);
     res.json({
         message: '404 Not Found!'
     });

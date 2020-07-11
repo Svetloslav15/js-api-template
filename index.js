@@ -1,6 +1,6 @@
-let env = process.env.NODE_ENV || 'development';
-let settings = require('./server/config/settings')[env];
-let BASE_URL = './server/config/';
+const env = process.env.NODE_ENV || 'development';
+const settings = require('./server/config/settings')[env];
+const BASE_URL = './server/config/';
 const app = require('express')();
 
 require(`${BASE_URL}database`)(settings);

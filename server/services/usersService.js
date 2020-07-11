@@ -1,9 +1,12 @@
+const env = process.env.NODE_ENV || 'development';
+const settings = require('./server/config/settings')[env];
 const encryption = require('../utilities/encryption');
 const User = require('mongoose').model('User');
 const jwt = require('jsonwebtoken');
 
 const INVALID_CREDENTIALS_ERROR_MESSAGE = 'Invalid credentials!';
 const SUCCESSFULLY_LOGIN_MESSAGE = 'Successfully login!';
+const jwtExpirationTime = '4h';
 
 module.exports = {
     signUp: async (req, username, password, firstName, lastName) => {
@@ -32,7 +35,7 @@ module.exports = {
             const token = jwt.sign({
                 username: user.username,
                 userId: user._id.toString()
-            }, 'somesupersecret', {expiresIn: '4h'});
+            }, settings.jwtSecretString, {expiresIn: jwtExpirationTime});
             req.session.userId = user._id.toString();
             let data = {
                 token,
@@ -61,7 +64,7 @@ module.exports = {
         const token = jwt.sign({
             username: user.username,
             userId: user._id.toString()
-        }, 'somesupersecret', {expiresIn: '4h'});
+        }, settings.jwtSecretString, {expiresIn: jwtExpirationTime});
         req.session.userId = user._id.toString();
         result.message = SUCCESSFULLY_LOGIN_MESSAGE;
         result.data = {
